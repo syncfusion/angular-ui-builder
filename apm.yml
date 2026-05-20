@@ -1,0 +1,13 @@
+name: angular-ui-builder
+version: 1.0.0
+description: Generates production-ready webpages powered by Syncfusion Angular Components. Orchestrates a structured
+  workflow that handles design thinking, component picking, code generation, and validation
+  with built-in WCAG 2.1 AA accessibility and responsive design. Use when building Angular UIs,
+  creating web components, designing interfaces, or generating frontend code.
+author: Syncfusion Inc
+dependencies:
+  apm:
+    - syncfusion/angular-ui-components-skills
+    - syncfusion/docx-editor-sdk-skills/skills/syncfusion-angular-docx-editor
+    - syncfusion/pdf-viewer-sdk-skills/skills/syncfusion-angular-pdf-viewer
+    - syncfusion/spreadsheet-editor-sdk-skills/skills/syncfusion-angular-spreadsheet-editor
