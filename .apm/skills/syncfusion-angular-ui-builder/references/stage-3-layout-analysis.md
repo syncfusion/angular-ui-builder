@@ -293,9 +293,9 @@ node components-search.cjs <your-project-root>\component-mapping.json
 - `<your-project-root>` = Your project's root directory (e.g., `d:\my-project`)
 - `<skills-dir>` = Skills directory name (configuration-specific, e.g., `{.agent-root}\skills`, `.agents\skills`, `.github\skills`, or `skills`)
 
-**Real example (with hidden config directory like {.agent-root}):**
+**Real example (with hidden config directory like .codestudio):**
 ```bash
-cd d:\my-project\{.agent-root}\skills\syncfusion-angular-ui-builder\scripts
+cd d:\my-project\.codestudio\skills\syncfusion-angular-ui-builder\scripts
 node components-search.cjs d:\my-project\component-mapping.json
 ```
 
@@ -313,7 +313,7 @@ node components-search.cjs d:\my-project\component-mapping.json
 
 **Path Resolution Rules (for Script):**
 - ✅ **Absolute paths work best** - Full path from C:\ or D:\ or any drive (most reliable)
-- ✅ **Fully IDE-agnostic** - Works with ANY skills directory structure (`{.agent-root}/`, `.agents/`, `.github/`, `skills/`, or custom)
+- ✅ **Fully IDE-agnostic** - Works with ANY skills directory structure (`.codestudio/`, `.agents/`, `.github/`, `skills/`, or custom)
 - ✅ **Editor-independent** - Not tied to specific IDE names or conventions
 - ✅ Script automatically resolves relative paths from script location
 - ✅ Script validates path exists before processing and shows full path if error occurs
