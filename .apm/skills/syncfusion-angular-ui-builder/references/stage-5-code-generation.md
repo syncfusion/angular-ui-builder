@@ -342,45 +342,77 @@ components/
 
 ## Component Integration & File Mapping
 
-**Important:**
-In a default Angular project, the app.html file contains placeholder template content.
-The following content is only a sample template provided by Angular and can be safely replaced:
- 
-**"The content below is only a placeholder and can be replaced. Delete the template below to get started with your project!"**
- 
-If this default Angular template (including styles and main layout tags) is present in your application, you should remove it to properly display your custom UI on the page.
+### Step 1 of Component Integration: overwrite `app.html` per the rule below BEFORE wiring any components.**
 
 **Generated files MUST be wired to display in the app:**
 
-1. **Import in App Component**:
-   ```typescript
-   import { Component } from '@angular/core';
-   import { HeaderComponent } from './components/Header/header.component';
-   import { SidebarComponent } from './components/Sidebar/sidebar.component';
-   import { MainContentComponent } from './components/MainContent/maincontent.component';
-   import { FooterComponent } from './components/Footer/footer.component';
-   
-   @Component({
-     selector: 'app-root',
-     template: `
-       <app-header></app-header>
-       <app-sidebar></app-sidebar>
-       <app-maincontent></app-maincontent>
-       <app-footer></app-footer>
-     `,
-     standalone: true,
-     imports: [HeaderComponent, SidebarComponent, MainContentComponent, FooterComponent]
-   })
-   export class AppComponent {}
-   ```
+---
 
-2. **Ensure CSS is loaded**:
-   - If no framework/greenfield CSS styles: Automatically imported in component
-   - If Tailwind: Classes applied directly
-   - If Syncfusion theme: Already imported at app entry point (Stage 4)
+### ⚠️ MANDATORY: Overwrite `app.html` Before Wiring Components
+
+**This is an action step, not a review checklist. Execute it as code.**
+
+**Detect** — if `src/app/app.html` or `src/app/app.component.html` contains ANY of the following, it MUST be fully overwritten:
+
+- The string `"only a placeholder"`
+- `<div class="content"` with Angular logo markup
+- Any `<style>` block referencing Angular defaults
+- Any `<main>` or `<h1>` with default Angular copy
+
+> Angular's default template injects content via `<style>` tags that persist after shallow edits. The only safe action is a **full overwrite** — do not attempt to edit around the existing content.
+
+**Action — write this exact content to `app.html` now:**
+
+If using routing:
+```html
+<router-outlet />
+```
+
+If NOT using routing, write only the app shell selectors:
+```html
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<app-maincontent></app-maincontent>
+<app-footer></app-footer>
+```
+
+**Do not skip this step even if the file appears short or already partially edited.**
+
+Without this step, both the Angular placeholder AND your custom UI will render simultaneously, causing duplicate/broken content on the page.
+
+### Step 2: Import in App Component
+
+```typescript
+import { Component } from '@angular/core';
+import { HeaderComponent } from './components/Header/header.component';
+import { SidebarComponent } from './components/Sidebar/sidebar.component';
+import { MainContentComponent } from './components/MainContent/maincontent.component';
+import { FooterComponent } from './components/Footer/footer.component';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <app-header></app-header>
+    <app-sidebar></app-sidebar>
+    <app-maincontent></app-maincontent>
+    <app-footer></app-footer>
+  `,
+  standalone: true,
+  imports: [HeaderComponent, SidebarComponent, MainContentComponent, FooterComponent]
+})
+export class AppComponent {}
+```
+
+### Step 3: Ensure CSS is loaded
+
+- If no framework/greenfield CSS styles: Automatically imported in component
+- If Tailwind: Classes applied directly
+- If Syncfusion theme: Already imported at app entry point (Stage 4)
+
 
 **Without this mapping, component won't render in sample.**
-**Without proper app.html cleanup when using routing, both the placeholder AND routed component will render, causing duplicate content.**
+
+---
 
 ## Syncfusion component and theme Package Installation
 
