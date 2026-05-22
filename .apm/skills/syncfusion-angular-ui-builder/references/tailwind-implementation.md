@@ -692,9 +692,9 @@ bootstrapApplication(AppComponent).catch(err => console.error(err));
 Syncfusion Tailwind3 theme respects Tailwind's dark mode:
 
 ```html
-<!-- Dark mode works automatically when e-dark class is on <html> -->
-<div class="e-dark">
-  <ejs-grid [dataSource]="data"></ejs-grid>  <!-- Uses dark theme colors automatically -->
+<!-- Dark mode works automatically when e-dark-mode class is on <html> -->
+<div class="e-dark-mode">
+  <ejs-grid [dataSource]="data"></ejs-grid>  <!-- Uses dark theme colors for syncfusion components automatically -->
 </div>
 ```
 

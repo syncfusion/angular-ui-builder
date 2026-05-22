@@ -342,6 +342,14 @@ components/
 
 ## Component Integration & File Mapping
 
+**Important:**
+In a default Angular project, the app.html file contains placeholder template content.
+The following content is only a sample template provided by Angular and can be safely replaced:
+ 
+**"The content below is only a placeholder and can be replaced. Delete the template below to get started with your project!"**
+ 
+If this default Angular template (including styles and main layout tags) is present in your application, you should remove it to properly display your custom UI on the page.
+
 **Generated files MUST be wired to display in the app:**
 
 1. **Import in App Component**:
@@ -366,13 +374,12 @@ components/
    export class AppComponent {}
    ```
 
-**CRITICAL:** ⚠️ When using routing, the `app.html` template must NOT contain any placeholder content (Angular default logo, text, etc.). Only `<router-outlet />` should be present. The routing setup in Stage 8 must include clearing/replacing the app.html content.
-
 3. **Ensure CSS is loaded**:
    - If no framework/greenfield CSS styles: Automatically imported in component
    - If Tailwind: Classes applied directly
    - If Syncfusion theme: Already imported at app entry point (Stage 4)
 
+**Without this mapping, component won't render in sample.**
 **Without proper app.html cleanup when using routing, both the placeholder AND routed component will render, causing duplicate content.**
 
 ## Syncfusion component and theme Package Installation
