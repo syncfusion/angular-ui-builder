@@ -26,8 +26,8 @@ Before using Syncfusion Angular UI Builder, ensure your environment meets these 
 | Requirement | Description |
 |-------------|-------------|
 | **APM** | [Install APM](https://microsoft.github.io/apm/getting-started/installation/) - Agent Package Manager for skill installation |
-| **Angular Project** | Active Angular project (standalone or module-based) |
-| **Node.js 18+** | npm package manager installed - refer [here](https://ej2.syncfusion.com/angular/documentation/getting-started/angular-cli)|
+| **Angular Project** | Active Angular project (standalone or module-based) - refer [here](https://ej2.syncfusion.com/angular/documentation/getting-started/angular-cli) |
+| **Node.js 18+** | npm package manager installed|
 | **Syncfusion License** | [Commercial](https://www.syncfusion.com/sales/unlimitedlicense), [Free Community](https://www.syncfusion.com/products/communitylicense), or [Free Trial](https://www.syncfusion.com/account/manage-trials/start-trials) |
 
 ## Installation
@@ -100,4 +100,3 @@ Product support is available through the following media.
 - [Community forum](https://www.syncfusion.com/forums/essential-js2)
 - [Request feature or report bug](https://www.syncfusion.com/feedback/angular)
 - [Live chat](https://www.syncfusion.com/support)
-
