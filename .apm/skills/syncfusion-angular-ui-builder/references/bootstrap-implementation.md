@@ -366,6 +366,19 @@ import { AppComponent } from './app/app.component';
 
 bootstrapApplication(AppComponent).catch(err => console.error(err));
 ```
+### Dark Mode in Syncfusion
+
+Syncfusion bootstrap5 theme respects bootstrap's dark mode:
+
+```html
+<!-- Dark mode works automatically when e-dark-mode class is applied -->
+<div class="e-dark-mode">
+  <ejs-grid></ejs-grid> <!-- Uses dark theme colors for Syncfusion components automatically -->
+</div>
+
+```
+
+📖 **For detailed Syncfusion theming:** See [Syncfusion Theming Resources](syncfusion-theming.md)
 
 ---
 

@@ -172,6 +172,8 @@ Load: `syncfusion-angular-ui-builder/references/stage-5-code-generation.md`
 **Important – Segregation Check:** If a UI has 4+ distinct sections or uses 3+ Syncfusion component types, follow the Complex UI Component Structure pattern.  
 Split each section into separate components to ensure clarity and modularity—avoid creating a single monolithic component.
 
+**Important:** Remove the default Angular app.html placeholder template (including styles and main layout tags, such as the message "The content below is only a placeholder and can be replaced. Delete the template below to get started with your project!") if present, to ensure your custom UI displays correctly.
+
 Generate: [ComponentName].ts with Syncfusion imports and design tokens
 Generate: [ComponentName].css with responsive design and spacing grid
 Include minimum mock data

@@ -33,11 +33,13 @@
    - Prompt: If missing, ask user for license key
    
 7. **Syncfusion Package Version Detection**
-   - **Scan `package.json` for existing Syncfusion packages:**
-     - If `@syncfusion/ej2-angular-*` exists: Extract version (e.g., `23.1.36`)
-     - Use SAME version for all new Syncfusion packages → Prevents version conflicts
+   - **scan `package.json` for existing Syncfusion packages:**
+      - If `@syncfusion/ej2-angular-*` exists: Extract the full version (e.g., `33.2.5`) and take the major number only (e.g., `33`)
+      - Use the major version for all new Syncfusion package installs → Avoids patch-not-found errors: `npm install @syncfusion/ej2-angular-schedule@33`
+      - Never mix major versions — all Syncfusion packages must share the same major number
    - **If NO existing Syncfusion packages found:**
-     - Use `*` (latest) version for all new packages: `@syncfusion/ej2-angular-grids@*`
+      - Use * (latest) version for all new packages: `@syncfusion/ej2-angular-grids@*`
+      - Document version decision: Log detected version in stage output
    - **Document version decision:** Log detected version in stage output
    
 **Output:**
