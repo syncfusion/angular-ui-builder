@@ -239,21 +239,51 @@ For dashboards, admin panels, or multi-section layouts:
 ### ⚠️ MANDATORY: Create component-mapping.json in Project Root
 
 **Step 1: Create `component-mapping.json`** in project root (NOT in scripts folder)
+
+Before running the script, confirm the file exists:
 ```bash
-# File: ./component-mapping.json (at workspace root)
+# macOS/Linux
+ls <project-root>/component-mapping.json
+
+# Windows
+dir <project-root>\component-mapping.json
 ```
 
-**Step 2: Run ComponentMapper Script** with component-mapping.json input
+If the file is missing, re-run the JSON creation step above before proceeding. **Do not run the script without this file present.**
+
+**Step 2: Verify Node.js is installed**
+
 ```bash
-cd scripts
-node components-search.cjs ../component-mapping.json
+node --version
+```
+- Required: Node.js 14 or higher (18+ recommended)
+- If missing or outdated: **Hard stop** — tell the user:
+  ```
+  ⚠ Node.js 18+ is required to run the component mapper script.
+  Re-run Stage 3 after installing.
+  ```
+  Do not proceed or use any manual fallback. The script is required for accurate component mapping.
+
+**Step 3: Run ComponentMapper Script**
+```bash
+cd <project-root>/<skills-dir>/syncfusion-angular-ui-builder/scripts
+node components-search.cjs <project-root>/component-mapping.json
 ```
 
-**Step 3: Capture Output in Chat Context**
+**Step 4: Capture Output in Chat Context**
 - ✅ Script outputs component + icon mapping JSON
 - ✅ Keep mapping results in conversation context ONLY (no file)
 - ✅ Do NOT save script output to file
 - ✅ Reference mapping in chat for Stages 4-5
+
+**Script Error Recovery:**
+
+| Error | Fix |
+|-------|-----|
+| `ENOENT: component-mapping.json not found` | Verify file exists at project root (Step 1), correct the path, retry |
+| `node: command not found` | Hard stop — Node.js not installed (Step 2) |
+| Empty output `{}` or `[]` | Validate JSON structure — ensure all elements have `type_hint` and `id` in snake_case, recreate file and retry |
+| 0 components mapped | Hard stop — do not advance to Stage 4. Share error output for diagnosis |
 
 ### Workflow Benefits
 | Aspect | Benefit |
@@ -276,48 +306,28 @@ Receive the component-mapping.json created above with `icon_hint` fields for com
 
 **⚠️ MANDATORY STEPS (DO NOT SKIP):**
 
-1. **Create** `component-mapping.json` at project root (e.g., `D:\skills-uibuilder-update\testing-demo\vite-project\component-mapping.json`)
-2. **Execute** script with ABSOLUTE PATH (Windows best practice)
-3. **Capture** script output in chat context (DO NOT save to file)
-4. **Reference** component mapping in subsequent stages
+Follow the 4-step process above: verify file exists → check Node.js → run script → capture output.
 
-**Execution (REQUIRED) - Windows:**
+**Path examples by skills directory:**
 
-Use absolute path for reliable execution:
 ```bash
-cd <your-project-root>\<skills-dir>\syncfusion-angular-ui-builder\scripts
-node components-search.cjs <your-project-root>\component-mapping.json
+# .codestudio
+cd /my-project/.codestudio/skills/syncfusion-angular-ui-builder/scripts
+node components-search.cjs /my-project/component-mapping.json
+
+# .agents
+cd /my-project/.agents/skills/syncfusion-angular-ui-builder/scripts
+node components-search.cjs /my-project/component-mapping.json
+
+# visible skills folder
+cd /my-project/skills/syncfusion-angular-ui-builder/scripts
+node components-search.cjs /my-project/component-mapping.json
 ```
 
-**Replace placeholders:**
-- `<your-project-root>` = Your project's root directory (e.g., `d:\my-project`)
-- `<skills-dir>` = Skills directory name (configuration-specific, e.g., `{.agent-root}\skills`, `.agents\skills`, `.github\skills`, or `skills`)
-
-**Real example (with hidden config directory like .codestudio):**
-```bash
-cd d:\my-project\.codestudio\skills\syncfusion-angular-ui-builder\scripts
-node components-search.cjs d:\my-project\component-mapping.json
-```
-
-**Real example (with hidden config directory like .agents):**
-```bash
-cd d:\my-project\.agents\skills\syncfusion-angular-ui-builder\scripts
-node components-search.cjs d:\my-project\component-mapping.json
-```
-
-**Real example (with visible skills directory):**
-```bash
-cd d:\my-project\skills\syncfusion-angular-ui-builder\scripts
-node components-search.cjs d:\my-project\component-mapping.json
-```
-
-**Path Resolution Rules (for Script):**
-- ✅ **Absolute paths work best** - Full path from C:\ or D:\ or any drive (most reliable)
-- ✅ **Fully IDE-agnostic** - Works with ANY skills directory structure (`.codestudio/`, `.agents/`, `.github/`, `skills/`, or custom)
-- ✅ **Editor-independent** - Not tied to specific IDE names or conventions
-- ✅ Script automatically resolves relative paths from script location
-- ✅ Script validates path exists before processing and shows full path if error occurs
-- ❌ Avoid relative paths like `../component-mapping.json` (can cause "file not found" errors)
+**Path Rules:**
+- ✅ Use forward slashes `/` — works on macOS, Linux, and Windows
+- ✅ Use absolute paths — avoids "file not found" errors
+- ❌ Avoid relative paths like `../component-mapping.json`
 
 **Output Destination:**
 - ✅ Component + Icon mapping JSON printed to terminal
@@ -448,15 +458,15 @@ The ComponentMapper uses **BM25 (Best Matching 25)**:
 ## Architecture
 
 - **Input**: User requirements + component type from Stage 1
-- **Processing**: 
+- **Processing**:
   - Component analysis → JSON structure with `type_hint` + `icon_hint`
   - ComponentMapper (BM25 algorithm on 76 components)
   - IconMapper (BM25 algorithm on 20+ EJ2 icons)
-- **Output**: 
+- **Output**:
   - `component-mapping.json` (project root) - layout structure + icon hints for Stage 4 & 5
   - Chat summary table - element count, components matched, icons matched
    "Icons Selected: [name1], [name2], [name3]"
-- **Data sources**: 
+- **Data sources**:
   - `scripts/components.csv` (Syncfusion components)
   - `scripts/icons.csv` (EJ2 icons)
   - `scripts/components-search.cjs` (BM25 mappers)

@@ -197,7 +197,7 @@ Output: npm install command
 
 **⚠️ CONFIRMATION** - Dependencies installed. Choose next step:
 - `yes` → proceed to Stage 7 (Validation)
-- `no` → skip to Stage 8 (Code Insertion)
+- `no` → ⚠️ Validation skipped. WCAG, accessibility, and security checks will not run. 
 
 ### Stage 7 - Validation
 Load: `syncfusion-angular-ui-builder/references/stage-7-validation.md` + `assets/validation-rules.md` + `references/web-standards.md`
@@ -208,6 +208,7 @@ Auto-fix where possible
 Output: PASS ✓ or FAIL ✗
 
 ### Stage 8 - Code Insertion
+Load: `syncfusion-angular-ui-builder/references/stage-8-code-insertion.md`
 Create component directory structure
 Insert files into project
 Update imports if needed
@@ -274,8 +275,8 @@ Re-ask the stage question or clarify intent.
 
 1. **IDENTIFY** the component from the issue (e.g., DataGrid, TextBox, CheckBox)
 2. **NAVIGATE** to the component skill file:
-   - Path: `.agent-root/skills/syncfusion-angular-{component-type}/SKILL.md`
-   - Example: `.agent-root/skills/syncfusion-angular-{component-type}/SKILL.md`
+   - Path: `{.agent-root}/skills/syncfusion-angular-{component-type}/SKILL.md`
+   - Example: `{.agent-root}/skills/syncfusion-angular-{component-type}/SKILL.md`
 3. **READ** the entire component skill file using `read_file` tool
 4. **DIAGNOSE** against component skill specifications:
    - Required imports
