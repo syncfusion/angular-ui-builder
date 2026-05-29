@@ -74,19 +74,20 @@ export class AppComponent {}
 
 ---
 
-### Step 3 — Build Verification
+### Step 3 — Serve Verification
 
 **Only run if Stage 7 validation was skipped.**
-If Stage 7 ran and passed, skip this step — build is already verified.
+If Stage 7 ran and passed, skip this step — serve is already verified.
 
 ```
 All files inserted. Please run:
 
-npm run build
+ng serve
 
 Paste errors here if any — otherwise you're done.
 ```
-
+> **Note:** Use `ng serve` during development to verify the UI renders correctly in the browser.
+> Use `ng build` only when doing a production or staging deployment check.
 ---
 
 ## Rollback
@@ -102,4 +103,4 @@ Paste errors here if any — otherwise you're done.
 | Scenario | Criteria |
 |----------|----------|
 | Stage 7 ran | Files accepted + theme import in `app.component.ts` + layout accepted |
-| Stage 7 skipped | Above + `ng build` passes |
+| Stage 7 skipped | Above + `ng serve` runs without errors |
