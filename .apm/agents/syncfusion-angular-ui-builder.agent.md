@@ -197,7 +197,7 @@ Output: npm install command
 
 **⚠️ CONFIRMATION** - Dependencies installed. Choose next step:
 - `yes` → proceed to Stage 7 (Validation)
-- `no` → skip to Stage 8 (Code Insertion)
+- `no` → ⚠️ Validation skipped. WCAG, accessibility, and security checks will not run. 
 
 ### Stage 7 - Validation
 Load: `syncfusion-angular-ui-builder/references/stage-7-validation.md` + `assets/validation-rules.md` + `references/web-standards.md`
@@ -208,11 +208,21 @@ Auto-fix where possible
 Output: PASS ✓ or FAIL ✗
 
 ### Stage 8 - Code Insertion
+Load: `syncfusion-angular-ui-builder/references/stage-8-code-insertion.md`
 Create component directory structure
 Insert files into project
 Update imports if needed
-Run build verification
+Run serve verification using `ng serve` (preferred over `ng build` during development)
 Output: File paths + success status
+
+**⚠️ SERVE COMMAND (Development Default):**
+After inserting files, always instruct the user to run:
+```bash
+ng serve
+```
+- Use `ng serve` during development to verify the UI renders correctly in the browser
+- Use `ng build` only when doing a production or staging deployment check
+- If `ng serve` throws errors, follow the **Build/Serve Error Resolution Protocol** below
 
 ## Error Recovery
 
@@ -231,15 +241,15 @@ Require explicit design system decisions (CSS framework, colors, spacing, typogr
 **Invalid User Response**:
 Re-ask the stage question or clarify intent.
 
-## ⚠️ MANDATORY: Build Error Resolution Protocol
+## ⚠️ MANDATORY: Build/Serve Error Resolution Protocol
 
-**When `npm run build` fails with ANY error:**
+**When `ng serve` or `ng build` fails with ANY error:**
 
 1. **STOP** - Do NOT guess or fix by assumption
 2. **IDENTIFY** the failing component (e.g., TextAreaComponent, GridComponent)
 3. **READ** `{.agent-root}/skills/syncfusion-angular-{component-type}/SKILL.md` → Getting Started. MUST read completely (no skimming)
 4. **RESOLVE** using documented approach from skill file
-5. **REBUILD** and verify
+5. **RE-RUN** `ng serve` and verify
 
 **Examples:**
 - TextAreaComponent error → Read `syncfusion-angular-inputs/SKILL.md`
@@ -274,8 +284,8 @@ Re-ask the stage question or clarify intent.
 
 1. **IDENTIFY** the component from the issue (e.g., DataGrid, TextBox, CheckBox)
 2. **NAVIGATE** to the component skill file:
-   - Path: `.agent-root/skills/syncfusion-angular-{component-type}/SKILL.md`
-   - Example: `.agent-root/skills/syncfusion-angular-{component-type}/SKILL.md`
+   - Path: `{.agent-root}/skills/syncfusion-angular-{component-type}/SKILL.md`
+   - Example: `{.agent-root}/skills/syncfusion-angular-{component-type}/SKILL.md`
 3. **READ** the entire component skill file using `read_file` tool
 4. **DIAGNOSE** against component skill specifications:
    - Required imports
@@ -347,3 +357,4 @@ Get confirmation before code generation and validation
 - Reference stage guides for Syncfusion API details when uncertain
 - **⚠️ MANDATORY: When user reports component rendering/functionality issues, ALWAYS navigate to component skill file first**
 - **⚠️ MANDATORY: Never generate component code from memory if component skill file exists** — verify against skill file for correct imports, props, and types
+- **⚠️ MANDATORY: Always use `ng serve` for development verification after Stage 8. Use `ng build` only for explicit production/staging checks**
