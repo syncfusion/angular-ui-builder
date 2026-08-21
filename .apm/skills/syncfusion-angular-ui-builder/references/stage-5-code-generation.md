@@ -88,7 +88,6 @@ Icons: [list unique iconCss values]
    - Package name (e.g., `@syncfusion/ej2-angular-grids`)
    - Exact import statement for the component
    - **Style imports (CRITICAL)** - Use overall single Syncfusion theme package
-   - Theme CSS if applicable
    - Required providers/setup (if any)
    - Base dependencies
 
