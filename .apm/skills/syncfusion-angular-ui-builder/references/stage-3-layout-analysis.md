@@ -1,6 +1,6 @@
 # Stage 3: Layout Analysis & Component Mapping (Combined)
 
-**Purpose:** Analyze user requirements, create optimal component-mapping.json, and map to Syncfusion components automatically. **FULLY AUTOMATED — NO user interaction (unless component validation required OR data binding adaptor is ambiguous)..**
+**Purpose:** Analyze user requirements, create optimal component-mapping.json, and map to Syncfusion components automatically. **FULLY AUTOMATED — NO user interaction (unless component validation required OR data binding adaptor is ambiguous).**
 
 ---
 
